@@ -1,0 +1,17 @@
+*{
+    margin:0;
+    box-sizing: border-box;
+}
+
+.page{
+    padding:20px;
+    font-size: 16px;
+}
+
+.main{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 15px;
+}
+
