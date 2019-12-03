@@ -45,15 +45,16 @@ const displaySeries = (seriesArray) => {
     const seriesImg = series.image;
 
     const elementLi = document.createElement('li');
-    const spanElement = document.createElement('span');
     const imgElement = document.createElement('img');
+    const spanElement = document.createElement('span');
+    
     const spanContent = document.createTextNode(seriesName);
-    elementLi.classList.add('list__serie');
-    imgElement.classList.add('img__serie');
-    spanElement.classList.add('tittle__serie');
+    elementLi.classList.add('serie__item');
+    imgElement.classList.add('serie__img');
+    spanElement.classList.add('serie__tittle');
     spanElement.appendChild(spanContent);
-    elementLi.appendChild(spanElement);
     elementLi.appendChild(imgElement);
+    elementLi.appendChild(spanElement);
     elementUl.appendChild(elementLi);
     elementLi.addEventListener('click', addFavourite);
 
@@ -69,8 +70,8 @@ function addFavourite(event) {
   let favouriteSerie = event.currentTarget;
   favouriteSerie.classList.toggle('selected');
 
-  const favoriteImage = favouriteSerie.querySelector('.img__serie');
-  const favoriteName = favouriteSerie.querySelector('.tittle__serie');
+  const favoriteImage = favouriteSerie.querySelector('.serie__img');
+  const favoriteName = favouriteSerie.querySelector('.serie__tittle');
   
 
   const favInfo = {
@@ -80,6 +81,7 @@ function addFavourite(event) {
 
   if (favouriteSerie.classList.contains('selected')) {
     favouriteSeriesArray.push(favInfo);
+
     paintFavourites();
     setLocalStorage();
   }
@@ -114,6 +116,21 @@ function searchSeriesHandler() {
   connectToAPI(urlBase.toLowerCase(), displaySeries);
 }
 
+function enterKeyHandle(event){
+  event.preventDefault();
+  searchSeriesHandler();
+}
+
+
 buttonSearch.addEventListener('click', searchSeriesHandler);
+elementForm.addEventListener('submit',enterKeyHandle);
 window.addEventListener('load',loadFavouriteHandler);
 
+/* function alreadyExist(savedFav, infoFav) {
+  for (const item of savedFav) {
+    if (item.title === infoFav.title) {
+      return true;
+    }
+  }
+  return false;
+} */
