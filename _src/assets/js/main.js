@@ -17,6 +17,7 @@ let favouriteSeriesArray = [];
 const urlBase = 'http://api.tvmaze.com/search/shows?q=';
 const imgDefault = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
 
+//función para conectar a la api
 const connectToAPI = () => {
   fetch(urlBase + `${searchInput.value}`)
     .then(response => response.json())
@@ -36,6 +37,21 @@ function loadFavouriteHandler() {
   }
   paintFavourites(favouriteSeriesArray);
 
+}
+//función para guardar mi array de favoritos en el localStorage
+function setLocalStorage() {
+  localStorage.setItem("favSeries", JSON.stringify(favouriteSeriesArray));
+}
+
+//handle para conectar a la api y pintar las series (función que agregamos como listener del boton)
+function searchSeriesHandler() {
+  connectToAPI(urlBase.toLowerCase(), displaySeries);
+}
+
+//función para buscar dando enter en el buscador
+function enterKeyHandle(event){
+  event.preventDefault();
+  searchSeriesHandler();
 }
 //funcion para pintar las series 
 const displaySeries = (seriesArray) => {
@@ -65,28 +81,35 @@ const displaySeries = (seriesArray) => {
     }
   }
 }
-function addFavourite(event) {
 
+//función para añadir a favoritos //eventcurrent del input
+
+function addFavourite(event) {
   let favouriteSerie = event.currentTarget;
   favouriteSerie.classList.toggle('selected');
-
   const favoriteImage = favouriteSerie.querySelector('.serie__img');
   const favoriteName = favouriteSerie.querySelector('.serie__tittle');
   
-
   const favInfo = {
     name: favoriteName.innerHTML,
     image:favoriteImage.src
   };
-
   if (favouriteSerie.classList.contains('selected')) {
     favouriteSeriesArray.push(favInfo);
-
     paintFavourites();
     setLocalStorage();
   }
 }
 
+//función para eliminar de favoritos //EN PROCESO
+const deleteFromFav=()=>{
+  for (let i = 0; i < favouriteSeriesArray.length; i++) {
+    if (favouriteSeriesArray.name===favInfo.name) {
+      favouriteSeriesArray.splice(i, 1);
+    }
+}
+}
+//función para pintar los favoritos
 function paintFavourites() {
   favouriteSeries.innerHTML = '';
   for (let favourite of favouriteSeriesArray) {
@@ -102,29 +125,17 @@ function paintFavourites() {
 
     favElementSpan.appendChild(spanContent);
     favElementList.appendChild(favElementImg);
-    favElementList.appendChild(favElementDel);
     favElementList.appendChild(favElementSpan);
+    favElementList.appendChild(favElementDel);
     favouriteSeries.appendChild(favElementList);
     
     favElementImg.src = favouriteImg;
     favElementList.classList.add('favourite__item');
     favElementImg.classList.add('favourite__item-img');
     favElementDel.classList.add('favourite__item-del');
-    
-
+    favElementDel.addEventListener('click',deleteFromFav);
   }
-}
-function setLocalStorage() {
-  localStorage.setItem("favSeries", JSON.stringify(favouriteSeriesArray));
-}
 
-function searchSeriesHandler() {
-  connectToAPI(urlBase.toLowerCase(), displaySeries);
-}
-
-function enterKeyHandle(event){
-  event.preventDefault();
-  searchSeriesHandler();
 }
 
 

@@ -4,6 +4,12 @@
     text-decoration: none;
 }
 
+.search{
+    &__button{
+        cursor: pointer;
+    }
+}
+
 .list__series{
 	width: auto;
 	display: flex;
@@ -31,7 +37,8 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 15px;
+    margin: 0;
+    padding:20px 0 20px 0;
 }
 .selected{
     background-color:#f45d48;
@@ -41,10 +48,21 @@
 .hidden{
 	display:none;
 }
+
+.favourites{
+    width: 250px;
+
+.favourite__tittle{
+    padding-bottom: 10px;
+}
+
 .favourite__item{
     font-size:13px;
-    width: 100px;
+    padding:5px;
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     &-img{
         width: 100px;
@@ -52,8 +70,10 @@
     &-del{
     height: 15px;
     width: 15px;
-    background: url("../icons/delete.png") no-repeat;
+    padding:10px;
+    background: url("../../delete.png") no-repeat;
     background-size: contain;
     cursor: pointer;
     }
+}
 }
