@@ -20,6 +20,16 @@
     justify-content: space-between;
     margin: 15px;
 }
+.selected{
+    background-color:pink;
+}
 .hidden{
 	display:none;
+}
+.favourite__item{
+    font-size:13px;
+    width: 100px;
+    &-img{
+        width: 100px;
+    }
 }
