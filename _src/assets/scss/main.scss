@@ -49,4 +49,11 @@
     &-img{
         width: 100px;
     }
+    &-del{
+    height: 15px;
+    width: 15px;
+    background: url("../icons/delete.png") no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    }
 }

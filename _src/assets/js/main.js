@@ -93,18 +93,24 @@ function paintFavourites() {
     const favouriteImg = favourite.image;
     const favouriteName = favourite.name;
 
-    const serieList = document.createElement('li');
-    const serieName = document.createElement('span');
-    const serieImg = document.createElement('img');
+    const favElementList = document.createElement('li');
+    const favElementSpan = document.createElement('span');
+    const favElementImg = document.createElement('img');
+    const favElementDel =document.createElement('div');
+    
     const spanContent = document.createTextNode(favouriteName);
 
-    serieName.appendChild(spanContent);
-    serieList.appendChild(serieImg);
-    serieList.appendChild(serieName);
-    favouriteSeries.appendChild(serieList);
-    serieImg.src = favouriteImg;
-    serieList.classList.add('favourite__item');
-    serieImg.classList.add('favourite__item-img')
+    favElementSpan.appendChild(spanContent);
+    favElementList.appendChild(favElementImg);
+    favElementList.appendChild(favElementDel);
+    favElementList.appendChild(favElementSpan);
+    favouriteSeries.appendChild(favElementList);
+    
+    favElementImg.src = favouriteImg;
+    favElementList.classList.add('favourite__item');
+    favElementImg.classList.add('favourite__item-img');
+    favElementDel.classList.add('favourite__item-del');
+    
 
   }
 }
@@ -126,11 +132,3 @@ buttonSearch.addEventListener('click', searchSeriesHandler);
 elementForm.addEventListener('submit',enterKeyHandle);
 window.addEventListener('load',loadFavouriteHandler);
 
-/* function alreadyExist(savedFav, infoFav) {
-  for (const item of savedFav) {
-    if (item.title === infoFav.title) {
-      return true;
-    }
-  }
-  return false;
-} */
