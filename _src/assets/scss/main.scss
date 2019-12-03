@@ -3,28 +3,24 @@
     box-sizing: border-box;
     text-decoration: none;
 }
-
 .search{
     &__button{
         cursor: pointer;
     }
 }
-
 .list__series{
-	width: auto;
+	width: 900px;
 	display: flex;
-	flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	flex-wrap: wrap;
+  justify-content: space-between;
     
-
-    .serie__item{
-        text-decoration: none;
-        padding: 20px;
-        list-style: none;
-        display:flex;
-        flex-direction: column;
-    }
+  .serie__item{
+    text-decoration: none;
+    padding: 20px;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+  }
 }
 .page{
     padding:20px;
@@ -32,7 +28,6 @@
     background-color: #fffffe;
     color: #222525;
 }
-
 .main{
     display:flex;
     flex-direction: row;
@@ -42,21 +37,19 @@
 }
 .selected{
     background-color:#f45d48;
-    color: #fffffe;
-    
+    color: #fffffe;    
 }
 .hidden{
-	display:none;
+	display:none !important;
 }
-
 .favourites{
     width: 250px;
 
-.favourite__tittle{
+  .favourite__tittle{
     padding-bottom: 10px;
-}
+  }
 
-.favourite__item{
+  .favourite__item{
     font-size:13px;
     padding:5px;
     list-style: none;
@@ -65,15 +58,15 @@
     justify-content: space-between;
 
     &-img{
-        width: 100px;
+      width: 100px;
     }
     &-del{
-    height: 15px;
-    width: 15px;
-    padding:10px;
-    background: url("../../delete.png") no-repeat;
-    background-size: contain;
-    cursor: pointer;
+      height: 15px;
+      width: 15px;
+      padding:10px;
+      background: url("../../delete.png") no-repeat;
+      background-size: contain;
+      cursor: pointer;
     }
-}
+  }
 }
