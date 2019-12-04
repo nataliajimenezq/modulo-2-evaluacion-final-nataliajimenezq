@@ -12,6 +12,7 @@ const favouriteSeries = document.querySelector('.favourite__series');
 //Creo un array vacío para guardar los favoritos
 let favouriteSeriesArray = [];
 let seriesArray=[];
+let languages=['English','Spanish','Portughese'];
 
 //URL base de me aplicación y la imagen default
 const urlBase = 'http://api.tvmaze.com/search/shows?q=';
@@ -53,12 +54,16 @@ const displaySeries = (seriesArray) => {
   for (const serie of seriesArray) {
     const seriesName = serie.show.name;
     const seriesImg = serie.show.image;
+    const seriesLang =serie.show.language;
 
     const elementLi = document.createElement('li');
     const imgElement = document.createElement('img');
     const spanElement = document.createElement('span');
+    const spanElementL=document.createElement('span');
+    const spanElementR=document.createElement('span');
 
     const spanContent = document.createTextNode(seriesName);
+    spanElementL.innerHTML= seriesLang; 
     elementLi.classList.add('serie__item');
     imgElement.classList.add('serie__img');
     spanElement.classList.add('serie__tittle');
@@ -66,6 +71,8 @@ const displaySeries = (seriesArray) => {
     elementLi.appendChild(imgElement);
     elementLi.appendChild(spanElement);
     elementUl.appendChild(elementLi);
+    elementLi.appendChild(spanElementL);
+    elementLi.appendChild(spanElementR);
     elementLi.addEventListener('click', addFavourite);
 
     if (seriesImg === null) {
@@ -73,6 +80,12 @@ const displaySeries = (seriesArray) => {
     } else {
       imgElement.src = seriesImg.medium;
     }
+    if (languages.indexOf(seriesLang)!== -1){
+        spanElementR.innerHTML='Recomendada';
+    } else{
+      spanElementR.innerHTML='Idioma no recomendado';
+    }
+    
   }
 }
 //función para añadir a favoritos //eventcurrent del input
