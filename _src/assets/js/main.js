@@ -11,6 +11,7 @@ const favouriteSeries = document.querySelector('.favourite__series');
 
 //Creo un array vacío para guardar los favoritos
 let favouriteSeriesArray = [];
+let seriesArray=[];
 
 //URL base de me aplicación y la imagen default
 const urlBase = 'http://api.tvmaze.com/search/shows?q=';
@@ -32,6 +33,7 @@ function loadFavouriteHandler() {
   paintFavourites(favouriteSeriesArray);
 }
 
+
 //función para guardar mi array de favoritos en el localStorage
 function setLocalStorage() {
   localStorage.setItem("favSeries", JSON.stringify(favouriteSeriesArray));
@@ -47,6 +49,7 @@ function enterKeyHandle(event) {
 }
 //funcion para pintar las series 
 const displaySeries = (seriesArray) => {
+    elementUl.innerHTML="";
   for (const serie of seriesArray) {
     const seriesName = serie.show.name;
     const seriesImg = serie.show.image;
@@ -129,6 +132,7 @@ function paintFavourites() {
     favElementImg.classList.add('favourite__item-img');
     favElementDel.classList.add('favourite__item-del');
     favElementDel.addEventListener('click', deleteFromFav);
+    
   }
 }
 
